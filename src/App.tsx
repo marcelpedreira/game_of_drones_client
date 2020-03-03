@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
-function App() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    // margin: '10rem 0',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  header: {
+    margin: '3rem 0',
+    textTransform: 'uppercase'
+  }
+}));
+
+function App(props: any) {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={classes.root}>
+      <header className={classes.header}>
+        <Typography variant="h1" gutterBottom>
+          Game of drones
+        </Typography>
       </header>
+      {props.children}
     </div>
   );
 }
