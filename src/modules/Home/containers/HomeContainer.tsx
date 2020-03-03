@@ -1,22 +1,27 @@
-import React, {useContext, useEffect} from 'react';
-import connect from "react-redux/es/connect/connect";
+import React, { useContext, useEffect } from 'react';
+// import connect from "react-redux/es/connect/connect";
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import HomeForm from '../components/HomeForm';
 import { updateNames, clearScore } from '../../../actions';
 import { GameContext } from '../../../GameContext';
+import { History } from 'history';
 
-const HomeContainer = ({history}) => {
+interface IProps {
+  history: History;
+}
+
+const HomeContainer: React.FC<IProps> = ({ history }) => {
   const { changePlayers, cleanScore } = useContext(GameContext);
 
-  const handleSubmit = players => {
+  const handleSubmit = (players: string[]) => {
     changePlayers(players);
-    history.push('/round/1/player/0')
-  }
+    history.push('/round/1/player/0');
+  };
 
   useEffect(() => {
     cleanScore();
-  }, [cleanScore]);
+  }, []);
 
   return (
     <div>
@@ -24,12 +29,12 @@ const HomeContainer = ({history}) => {
         Enter Players Names
       </Typography>
       <HomeForm onSubmit={handleSubmit} />
-      <div style={{marginTop: '5rem'}}>
+      <div style={{ marginTop: '5rem' }}>
         Check the <Link to="/records">records</Link>
       </div>
     </div>
   );
-}
+};
 
 // function mapStateToProps(state) {
 //   return {
