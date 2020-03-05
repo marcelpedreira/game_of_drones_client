@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import HomeForm from '../components/HomeForm';
-import { updateNames, clearScore } from '../../../actions';
 import { GameContext } from '../../../GameContext';
 import { History } from 'history';
 
@@ -35,21 +34,5 @@ const HomeContainer: React.FC<IProps> = ({ history }) => {
     </div>
   );
 };
-
-// function mapStateToProps(state) {
-//   return {
-//     moves: state.game.moves
-//   };
-// }
-
-// const mapActionsToProps = dispatch => ({
-//   updateNames: (data) => dispatch(updateNames(data)),
-//   clearScore: () => dispatch(clearScore()),
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapActionsToProps
-// )(HomeContainer);
 
 export default HomeContainer;

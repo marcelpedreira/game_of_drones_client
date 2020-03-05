@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-// import TextField from "../../../components/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,10 +52,6 @@ const HomeForm: React.FC<IProps> = ({ onSubmit }) => {
           value={player2}
           onChange={e => setPlayer2(e.target.value)}
         />
-
-        {/* <Field name="player1" label="Player 1" component={TextField} fullWidth margin="dense" className={classes.field}/>
-        <Field name="player2" label="Player 2" component={TextField} fullWidth margin="dense" className={classes.field}/> */}
-
         <Button
           variant="contained"
           color="secondary"
@@ -71,7 +66,3 @@ const HomeForm: React.FC<IProps> = ({ onSubmit }) => {
 };
 
 export default HomeForm;
-
-// export default reduxForm({
-//   form: 'home'
-// })(HomeForm);

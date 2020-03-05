@@ -1,5 +1,4 @@
-import React from 'react';
-import connect from "react-redux/es/connect/connect";
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
@@ -8,22 +7,31 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { GameContext } from '../GameContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 500,
-  },
+    maxWidth: 500
+  }
 }));
 
-const getFriends = () => {
-  console.log('nada');
-}
- 
-const Score = (props) => {
-  const classes = useStyles();
-  const {score, players} = props;
+// type score = {
+//   round: number;
+//   player0_move: string;
+//   player1_move: string;
+//   winner: number;
+// };
 
-  return ( 
+// interface IProps {
+//   score: score[];
+//   players: string[];
+// }
+
+const Score: React.FC<{}> = () => {
+  const classes = useStyles();
+  const { score, players } = useContext(GameContext);
+
+  return (
     <div className={classes.root}>
       <Typography variant="h3" gutterBottom>
         Score
@@ -39,14 +47,18 @@ const Score = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {score.map(parcial_score => (
+            {score.map((parcial_score: any) => (
               <TableRow key={parcial_score.round}>
                 <TableCell component="th" scope="row">
                   {parcial_score.round}
                 </TableCell>
-                <TableCell align="right">{parcial_score.player0_move}</TableCell>
-                <TableCell align="right">{parcial_score.player1_move}</TableCell>
-                <TableCell align="right">{players[parcial_score.winner]}</TableCell>
+                <TableCell align="right">
+                  {parcial_score.player_0_move}
+                </TableCell>
+                <TableCell align="right">
+                  {parcial_score.player_1_move}
+                </TableCell>
+                <TableCell align="right">{parcial_score.winner}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -54,24 +66,23 @@ const Score = (props) => {
       </Paper>
     </div>
   );
-}
+};
 
-function mapStateToProps(state) {
-  return {
-    score: state.game.score,
-    players: state.game.players,
-  };
-}
+export default Score;
 
-const mapActionsToProps = dispatch => ({
-  getFriends: () => dispatch(getFriends()),
-  // deleteFriend: user => dispatch(deleteFriend(user))
-});
+// function mapStateToProps(state) {
+//   return {
+//     score: state.game.score,
+//     players: state.game.players
+//   };
+// }
 
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(Score);
+// const mapActionsToProps = dispatch => ({
+//   getFriends: () => dispatch(getFriends())
+//   // deleteFriend: user => dispatch(deleteFriend(user))
+// });
+
+// export default connect(mapStateToProps, mapActionsToProps)(Score);
 
 // reduxForm({
 //   // a unique name for the form
